@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're Booked — Buildwise Media</title>
+<meta name="description" content="Your strategy call is confirmed. Here's what to expect and how to prepare.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect x='16' y='16' width='480' height='480' fill='none' stroke='%23f5f0e8' stroke-width='8'/%3E%3Crect x='32' y='32' width='448' height='448' fill='none' stroke='rgba(232,224,212,0.15)' stroke-width='4'/%3E%3Ctext x='256' y='270' font-family='Georgia,serif' font-weight='700' font-size='200' fill='%23f5f0e8' text-anchor='middle' dominant-baseline='central' letter-spacing='10'%3EBW%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<!-- GTM -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V5LSP69E41"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V5LSP69E41');</script>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');fbq('track','Schedule');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1"/></noscript>
+
+<style>
+:root {
+  --bg-void: #0c0a08;
+  --bg-primary: #181613;
+  --bg-elevated: #1f1c18;
+  --bg-card: #242019;
+  --copper: #BF9469;
+  --copper-light: #D4A574;
+  --ember: #C75B2A;
+  --cream: #f5f0e8;
+  --cream-mid: #e0d8cc;
+  --cream-faint: rgba(232,224,212,0.15);
+  --cream-ghost: rgba(232,224,212,0.06);
+  --warm-400: #a89a8a;
+  --warm-500: #8a7d6e;
+  --warm-700: #4a4239;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+}
+html.light {
+  --bg-void: #F5F0EB; --bg-primary: #F5F0EB; --bg-elevated: #FFFFFF; --bg-card: #FFFFFF;
+  --cream: #2D2420; --cream-mid: #3d3530;
+  --cream-faint: rgba(45,36,32,0.1); --cream-ghost: rgba(45,36,32,0.04);
+  --warm-400: #6B5D52; --warm-500: #8a7d6e; --warm-700: #d0c8bf;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); color: var(--cream); background: var(--bg-void); line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 16px; }
+a { color: var(--copper); text-decoration: none; }
+
+.confirmation {
+  max-width: 640px;
+  text-align: center;
+}
+.check-icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--ember);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+.check-icon svg { width: 32px; height: 32px; color: var(--cream); }
+
+.confirmation .sub {
+  color: var(--cream-mid);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.next-steps {
+  text-align: left;
+  background: var(--cream-ghost);
+  border: 1px solid var(--cream-faint);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 32px;
+}
+.next-steps h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+.step-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.step-item:last-child { margin-bottom: 0; }
+.step-num {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--cream-ghost);
+  border: 1px solid var(--cream-faint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--copper);
+}
+.step-text {
+  font-size: 0.95rem;
+  color: var(--cream-mid);
+  line-height: 1.6;
+}
+.step-text strong { color: var(--cream); }
+
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--warm-400);
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.home-link:hover { color: var(--cream); }
+
+.logo-link {
+  margin-bottom: 40px;
+}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5JSD86L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<a href="/" class="logo-link" aria-label="Buildwise Media Home">
+  <svg viewBox="0 0 600 140" width="160" height="48" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="8" width="124" height="124" fill="none" stroke="var(--cream)" stroke-width="1.5"/>
+    <rect x="16" y="16" width="108" height="108" fill="none" stroke="var(--cream-faint)" stroke-width="0.75"/>
+    <text x="70" y="74" font-family="'Playfair Display',Georgia,serif" font-weight="700" font-size="48" fill="var(--cream)" text-anchor="middle" dominant-baseline="central" letter-spacing="3">BW</text>
+    <text x="165" y="62" font-family="'Playfair Display',Georgia,serif" font-weight="700" font-size="30" fill="var(--copper)" dominant-baseline="central" letter-spacing="1.5">Buildwise</text>
+    <text x="167" y="100" font-family="'DM Sans','Helvetica Neue',sans-serif" font-weight="500" font-size="12.5" fill="var(--cream)" dominant-baseline="central" letter-spacing="7">MEDIA</text>
+  </svg>
+</a>
+
+<div class="confirmation">
+  <div class="check-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <h1>You're Booked.</h1>
+  <p class="sub">Your strategy call is confirmed. Check your email for the calendar invite and a link to join.</p>
+
+  <div class="next-steps">
+    <h2>What Happens Next</h2>
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-text"><strong>Check your inbox.</strong> You'll get a confirmation email with the call details and a calendar invite. Add it so you don't forget.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-text"><strong>Think about your numbers.</strong> What's one new customer worth to you over a year? What are you spending on marketing now? These don't need to be exact — just ballpark.</div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-text"><strong>Show up. That's it.</strong> We'll run the call. We'll ask smart questions. You'll leave with clarity on whether a Revenue Engine makes sense for your business — no pitch, no pressure.</div>
+    </div>
+  </div>
+
+  <a href="/" class="home-link">← Back to Home</a>
+</div>
+
+<script>
+(function(){
+  const saved = document.cookie.split(';').find(c => c.trim().startsWith('bwm-theme='));
+  if (saved) document.documentElement.className = saved.split('=')[1];
+  else if (window.matchMedia('(prefers-color-scheme: light)').matches) document.documentElement.className = 'light';
+})();
+</script>
+</body>
+</html>
