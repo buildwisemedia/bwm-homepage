@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book a Strategy Call — Buildwise Media</title>
+<title>Book a Discovery Call — Buildwise Media</title>
 <meta name="description" content="15 minutes. No pitch. We'll look at your business, your market, and your numbers — and tell you if a Revenue Engine makes sense. Free. No obligation.">
 <meta property="og:title" content="Book a Free Strategy Call">
 <meta property="og:description" content="See if a Revenue Engine is right for your business. 15 minutes with our team. No obligation.">
@@ -219,10 +219,18 @@ a { color: var(--copper); text-decoration: none; }
 </div>
 
 <div class="cal-embed-wrap">
-  <div class="cal-skeleton" id="calSkeleton">
-    <div class="loader"></div>
-    <iframe id="calFrame" src="https://book.buildwisemedia.com/bwm/strategy-call" loading="lazy" title="Book a Strategy Call"></iframe>
-  </div>
+  <!-- Cal.com Inline Embed -->
+  <div id="cal-embed" style="width:100%;min-height:700px;overflow:auto;"></div>
+  <script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://book.buildwisemedia.com/embed/embed.js", "init");
+    Cal("init", {origin:"https://book.buildwisemedia.com"});
+    Cal("inline", {
+      elementOrSelector:"#cal-embed",
+      calLink:"bwm/discovery-call",
+      layout:"month_view"
+    });
+    Cal("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+  </script>
 </div>
 
 <div class="trust-pills">
@@ -232,7 +240,7 @@ a { color: var(--copper); text-decoration: none; }
 </div>
 
 <div class="trust-aside">
-  <p><strong style="color:var(--cream)">No contracts. No obligation.</strong></p>
+  <p><strong style="color:var(--cream)">No long-term lock-in. No obligation.</strong></p>
   <p>This call is free. If we're not a fit, we'll say so. We'd rather save you time than waste it.</p>
   <p class="quote">"We spent our own money on this system before we asked anyone else to." — Buildwise Media</p>
 </div>
@@ -244,10 +252,6 @@ a { color: var(--copper); text-decoration: none; }
   if (saved) document.documentElement.className = saved.split('=')[1];
   else if (window.matchMedia('(prefers-color-scheme: light)').matches) document.documentElement.className = 'light';
 })();
-
-// Cal.com iframe load
-const calFrame = document.getElementById('calFrame');
-calFrame.addEventListener('load', () => calFrame.classList.add('loaded'));
 </script>
 </body>
 </html>

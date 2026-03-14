@@ -32,11 +32,11 @@ HVAC, Pest Control, Landscaping, Roofing, Plumbing, Electrical, Cleaning, Home S
 ## Pricing
 - Ascend: $5,999/month (full Revenue Engine)
 - Ascend Lite: $3,500/month (core engine)
-- All plans month-to-month, no contracts
+- All plans month-to-month, no long-term lock-in
 
 ## Contact
 - Website: https://buildwisemedia.com
-- Booking: https://book.buildwisemedia.com/bwm/strategy-call
+- Booking: https://book.buildwisemedia.com/bwm/discovery-call
 - Email: hello@buildwisemedia.com
 - Location: Tucker, GA (serving businesses nationwide)
 
