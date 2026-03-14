@@ -55,23 +55,6 @@
   --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
 }
 
-html.light {
-  --bg-void: #F5F0EB;
-  --bg-deep: #ede7e0;
-  --bg-primary: #F5F0EB;
-  --bg-elevated: #FFFFFF;
-  --bg-card: #FFFFFF;
-  --cream: #2D2420;
-  --cream-mid: #3d3530;
-  --cream-soft: rgba(45,36,32,0.6);
-  --cream-muted: rgba(45,36,32,0.4);
-  --cream-faint: rgba(45,36,32,0.1);
-  --cream-ghost: rgba(45,36,32,0.04);
-  --warm-400: #6B5D52;
-  --warm-500: #8a7d6e;
-  --warm-700: #d0c8bf;
-  --warm-800: #e8e2db;
-}
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -209,9 +192,6 @@ a:hover { color: var(--copper-light); }
   border-bottom: 1px solid var(--cream-faint);
   padding: 12px 0;
 }
-html.light .nav.scrolled {
-  background: rgba(245,240,235,0.92);
-}
 .nav-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -220,7 +200,7 @@ html.light .nav.scrolled {
   align-items: center;
   justify-content: space-between;
 }
-.nav-logo svg { height: 44px; width: auto; }
+.nav-logo svg { height: 56px; width: auto; }
 .nav-links {
   display: flex;
   align-items: center;
@@ -229,7 +209,7 @@ html.light .nav.scrolled {
 }
 .nav-links a {
   color: var(--warm-400);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 500;
   transition: color 0.2s;
 }
@@ -243,21 +223,6 @@ html.light .nav.scrolled {
   transition: all 0.2s;
 }
 .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px var(--ember-glow); }
-.nav-toggle-theme {
-  background: none;
-  border: 1px solid var(--cream-faint);
-  color: var(--warm-400);
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  width: 36px;
-  height: 36px;
-}
-.nav-toggle-theme:hover { border-color: var(--copper-dim); color: var(--cream); }
 
 /* Mobile nav */
 .nav-hamburger {
@@ -374,8 +339,101 @@ html.light .nav.scrolled {
 
 @media (max-width: 768px) {
   .hero-inner { grid-template-columns: 1fr; }
-  .hero-visual { display: none; }
+  .hero-visual { display: block; margin-top: 20px; min-height: auto; }
   .hero-inner { padding: 100px 24px 60px; }
+  .hero-split { grid-template-columns: 1fr; }
+  .hero-split-divider { width: 100%; height: 2px; background: linear-gradient(to right, rgba(245,240,235,0.08), var(--copper), rgba(245,240,235,0.08)); }
+}
+
+/* ==================== HERO BEFORE/AFTER SPLIT ==================== */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--cream-faint);
+  height: 100%;
+  min-height: 380px;
+}
+.hero-split-before {
+  padding: 32px;
+  background: #1e1a16;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-split-after {
+  padding: 32px;
+  background: var(--bg-elevated);
+  border-left: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.hero-split-after::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(191,148,105,0.15);
+  border-radius: 0;
+  pointer-events: none;
+}
+.hero-split-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-split-before .hero-split-label {
+  color: var(--warm-500);
+}
+.hero-split-after .hero-split-label {
+  color: var(--copper);
+}
+.hero-split-items p {
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.hero-split-items p:last-child { margin-bottom: 0; }
+.hero-split-before .hero-split-items p {
+  color: var(--cream-soft);
+  font-style: italic;
+  opacity: 0.7;
+}
+.hero-split-before .hero-split-items p:nth-child(1) { transform: translateX(4px); }
+.hero-split-before .hero-split-items p:nth-child(2) { transform: translateX(-2px); }
+.hero-split-before .hero-split-items p:nth-child(3) { transform: translateX(8px); }
+.hero-split-before .hero-split-items p:nth-child(4) { transform: translateX(-4px); }
+.hero-split-after .hero-split-items p {
+  color: var(--cream);
+  font-weight: 600;
+}
+.hero-split-after .hero-split-items p::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--copper);
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.hero-split-divider {
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(245,240,235,0.08), var(--copper), rgba(245,240,235,0.08));
+}
+.hero-split {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: heroSplitIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+}
+@keyframes heroSplitIn {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ==================== TRUST BAR ==================== */
@@ -613,7 +671,7 @@ html.light .nav.scrolled {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   color: var(--warm-500);
 }
 .footer-legal a { color: var(--warm-500); margin-left: 16px; }
@@ -649,71 +707,6 @@ html.light .nav.scrolled {
 .reveal-delay-1 { transition-delay: 0.2s; }
 .reveal-delay-2 { transition-delay: 0.4s; }
 
-/* ==================== HERO POWER PREVIEW ==================== */
-.hero-power-preview {
-  position: relative;
-  background: rgba(0,0,0,0.4);
-  border: 1px solid rgba(245,240,235,0.1);
-  border-radius: 16px;
-  padding: 40px 32px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-.hero-power-glow {
-  position: absolute;
-  width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(199,91,42,0.15) 0%, transparent 70%);
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  animation: heroPulse 4s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes heroPulse {
-  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
-}
-.hero-power-label {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: #C75B2A; margin-bottom: 32px;
-  position: relative; z-index: 1;
-}
-.hero-power-items {
-  width: 100%; position: relative; z-index: 1;
-}
-.hero-power-item {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 20px 24px;
-  border-bottom: 1px solid rgba(245,240,235,0.06);
-}
-.hero-power-item:last-child { border-bottom: none; }
-.hero-power-hl {
-  background: rgba(199,91,42,0.08);
-  border-radius: 8px;
-  border-bottom-color: transparent;
-  margin: 4px 0;
-}
-.hero-power-num {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 48px; font-weight: 800;
-  letter-spacing: -0.03em; line-height: 1;
-}
-.hero-power-time {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 13px; font-weight: 600;
-  color: rgba(245,240,235,0.5);
-  letter-spacing: 0.04em; text-transform: uppercase;
-}
-.hero-power-cap {
-  margin-top: 24px; font-size: 13px;
-  color: rgba(245,240,235,0.35); font-style: italic;
-  position: relative; z-index: 1;
-}
 
 /* ==================== PAIN GRID ==================== */
 .pain-grid {
@@ -752,7 +745,7 @@ html.light .nav.scrolled {
 .accel-header-right strong { color: #F5F0EB; font-weight: 600; }
 .comp-label {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
   text-transform: uppercase; color: #C75B2A;
 }
 
@@ -810,7 +803,7 @@ html.light .nav.scrolled {
 .power-num.far-c { color: #3B6FB8; }
 .power-label { font-size: 12px; color: rgba(245,240,235,0.5); line-height: 1.4; }
 .power-label strong {
-  display: block; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 11px;
+  display: block; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 12px;
   font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
   color: #F5F0EB; margin-bottom: 2px;
 }
@@ -877,7 +870,7 @@ html.light .nav.scrolled {
 }
 .slider-label-row {
   display: flex; justify-content: space-between; margin-top: 8px;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 10px; font-weight: 700;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 12px; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,240,235,0.25);
 }
 .slider-badge { text-align: center; margin-top: 16px; }
@@ -903,7 +896,7 @@ html.light .nav.scrolled {
 .metric-card-icon { width: 16px; height: 16px; margin-bottom: 12px; opacity: 0.5; transition: opacity 0.3s; }
 .metric-card:hover .metric-card-icon { opacity: 0.8; }
 .metric-card-label {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 10px; font-weight: 700;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 12px; font-weight: 700;
   letter-spacing: 0.08em; text-transform: uppercase;
   color: rgba(245,240,235,0.25); margin-bottom: 12px;
 }
@@ -980,7 +973,7 @@ html.light .nav.scrolled {
 .dot.ai-build { animation: dotPulse 2s ease-in-out infinite; }
 
 .dotgrid-legend { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 16px; }
-.dotgrid-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: rgba(245,240,235,0.45); }
+.dotgrid-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: rgba(245,240,235,0.45); }
 .dotgrid-legend-swatch { width: 10px; height: 10px; border-radius: 1px; flex-shrink: 0; }
 
 /* Right side text */
@@ -1023,13 +1016,6 @@ html.light .nav.scrolled {
   .dotgrid-text { padding-top: 0; }
 }
 
-/* ==================== LIGHT MODE OVERRIDES FOR COMPONENT SECTIONS ==================== */
-html.light .accel-section,
-html.light .slider-section,
-html.light .dotgrid-section {
-  background: #1C1714;
-  color: #F5F0EB;
-}
 </style>
 
 <!-- JSON-LD Structured Data -->
@@ -1114,11 +1100,6 @@ html.light .dotgrid-section {
       <li><a href="#how-it-works">How It Works</a></li>
       <li><a href="#acceleration">The Data</a></li>
       <li><a href="#testimonials">Results</a></li>
-      <li>
-        <button class="nav-toggle-theme" id="themeToggle" aria-label="Toggle dark/light mode">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        </button>
-      </li>
       <li><a href="/book" class="nav-cta">Book Your Strategy Call</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
@@ -1133,9 +1114,6 @@ html.light .dotgrid-section {
   <a href="#acceleration" onclick="closeMobile()">The Data</a>
   <a href="#testimonials" onclick="closeMobile()">Results</a>
   <a href="/book" class="nav-cta" style="text-align:center;margin-top:16px;">Book Your Strategy Call</a>
-  <button class="nav-toggle-theme" onclick="toggleTheme()" style="margin-top:auto;align-self:center;" aria-label="Toggle theme">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-  </button>
 </div>
 
 <!-- ==================== HERO ==================== -->
@@ -1151,25 +1129,27 @@ html.light .dotgrid-section {
         <a href="#how-it-works" class="btn-ghost">See How It Works ↓</a>
       </div>
     </div>
-    <div class="hero-visual fade-up" style="transition-delay:0.3s">
-      <div class="hero-power-preview">
-        <div class="hero-power-glow"></div>
-        <div class="hero-power-label">AI Capability Growth</div>
-        <div class="hero-power-items">
-          <div class="hero-power-item">
-            <span class="hero-power-num" style="color:#2D8A5E">1&#215;</span>
-            <span class="hero-power-time">Today</span>
-          </div>
-          <div class="hero-power-item hero-power-hl">
-            <span class="hero-power-num" style="color:#C75B2A">4&#215;</span>
-            <span class="hero-power-time">May 2026</span>
-          </div>
-          <div class="hero-power-item">
-            <span class="hero-power-num" style="color:#3B6FB8">8&#215;</span>
-            <span class="hero-power-time">Dec 2026</span>
+    <div class="hero-visual">
+      <div class="hero-split">
+        <div class="hero-split-before">
+          <span class="hero-split-label">Without a System</span>
+          <div class="hero-split-items">
+            <p>"Where are my leads?"</p>
+            <p>"Another month, no pipeline"</p>
+            <p>"Marketing agency ghosted us"</p>
+            <p>"I'm the marketing department"</p>
           </div>
         </div>
-        <div class="hero-power-cap">The curve is going vertical &#8595;</div>
+        <div class="hero-split-divider"></div>
+        <div class="hero-split-after">
+          <span class="hero-split-label">With Your Revenue Engine</span>
+          <div class="hero-split-items">
+            <p>47 qualified leads this month</p>
+            <p>$280K pipeline — growing</p>
+            <p>Follow-ups running on autopilot</p>
+            <p>I focus on closing, not chasing</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1605,7 +1585,7 @@ html.light .dotgrid-section {
       <h4>Company</h4>
       <a href="#">Privacy Policy</a>
       <a href="#">Terms of Service</a>
-      <p style="margin-top:16px;color:var(--warm-500);font-size:0.85rem">Tucker, GA</p>
+      <p style="margin-top:16px;color:var(--warm-500);font-size:0.85rem">Atlanta, GA</p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1618,25 +1598,6 @@ html.light .dotgrid-section {
 </footer>
 
 <script>
-// ==================== THEME TOGGLE ====================
-(function initTheme() {
-  var saved = document.cookie.split(';').find(function(c) { return c.trim().startsWith('bwm-theme='); });
-  if (saved) {
-    var val = saved.split('=')[1];
-    document.documentElement.className = val;
-  } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-    document.documentElement.className = 'light';
-  }
-})();
-
-function toggleTheme() {
-  var html = document.documentElement;
-  var next = html.classList.contains('dark') ? 'light' : 'dark';
-  html.className = next;
-  document.cookie = 'bwm-theme=' + next + ';path=/;max-age=31536000;SameSite=Lax';
-}
-document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-
 // ==================== NAV SCROLL ====================
 var navEl = document.getElementById('nav');
 window.addEventListener('scroll', function() {

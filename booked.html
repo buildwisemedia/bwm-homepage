@@ -37,12 +37,6 @@
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
 }
-html.light {
-  --bg-void: #F5F0EB; --bg-primary: #F5F0EB; --bg-elevated: #FFFFFF; --bg-card: #FFFFFF;
-  --cream: #2D2420; --cream-mid: #3d3530;
-  --cream-faint: rgba(45,36,32,0.1); --cream-ghost: rgba(45,36,32,0.04);
-  --warm-400: #6B5D52; --warm-500: #8a7d6e; --warm-700: #d0c8bf;
-}
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: var(--font-body); color: var(--cream); background: var(--bg-void); line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; }
 h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 16px; }
@@ -164,12 +158,5 @@ a { color: var(--copper); text-decoration: none; }
   <a href="/" class="home-link">← Back to Home</a>
 </div>
 
-<script>
-(function(){
-  const saved = document.cookie.split(';').find(c => c.trim().startsWith('bwm-theme='));
-  if (saved) document.documentElement.className = saved.split('=')[1];
-  else if (window.matchMedia('(prefers-color-scheme: light)').matches) document.documentElement.className = 'light';
-})();
-</script>
 </body>
 </html>
