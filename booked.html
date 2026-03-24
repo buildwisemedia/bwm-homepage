@@ -14,8 +14,8 @@
 <!-- GTM -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V5LSP69E41"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V5LSP69E41');</script>
-<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');fbq('track','Schedule');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V5LSP69E41',{send_page_view:false});</script>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');</script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1"/></noscript>
 
 <style>
@@ -157,6 +157,116 @@ a { color: var(--copper); text-decoration: none; }
 
   <a href="/" class="home-link">← Back to Home</a>
 </div>
+
+<!-- BWM Analytics — UTM preservation + CTA tracking -->
+<script>
+(function() {
+  'use strict';
+
+  /* UTM PRESERVATION — sessionStorage (runs BEFORE conversion block cleans the URL) */
+  var params = new URLSearchParams(window.location.search);
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(key) {
+    var val = params.get(key);
+    if (val) sessionStorage.setItem(key, val);
+  });
+
+  /* CTA CLICK TRACKING — Event 3 */
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href="/book"], a[href="/book/"]').forEach(function(link) {
+      link.addEventListener('click', function() {
+        var ctaText = link.textContent.trim().replace(/\s+/g, ' ');
+        var section = link.closest('section');
+        var sectionId = section ? (section.id || section.getAttribute('data-section') || 'unknown') : 'unknown';
+
+        if (typeof gtag === 'function') {
+          gtag('event', 'cta_click', {
+            client_id: 'buildwise-media',
+            cta_text: ctaText,
+            cta_location: sectionId,
+            page_path: window.location.pathname
+          });
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'cta_click',
+          client_id: 'buildwise-media',
+          cta_text: ctaText,
+          cta_location: sectionId,
+          page_path: window.location.pathname
+        });
+
+        if (typeof fbq === 'function') {
+          fbq('track', 'ViewContent', {
+            content_name: ctaText
+          });
+        }
+      });
+    });
+
+    /* PHONE CLICK TRACKING — Event 4 */
+    document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+      link.addEventListener('click', function() {
+        var phone = link.getAttribute('href').replace('tel:', '');
+
+        if (typeof gtag === 'function') {
+          gtag('event', 'phone_click', {
+            client_id: 'buildwise-media',
+            phone_number: phone,
+            page_path: window.location.pathname
+          });
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'phone_click',
+          client_id: 'buildwise-media',
+          phone_number: phone,
+          page_path: window.location.pathname
+        });
+
+        if (typeof fbq === 'function') {
+          fbq('track', 'Contact');
+        }
+      });
+    });
+  });
+})();
+</script>
+
+<!-- BWM Analytics — Conversion tracking (gated by ?confirmed=1) -->
+<script>
+if (new URLSearchParams(window.location.search).get('confirmed') === '1') {
+
+  /* Meta Pixel: Schedule event (primary conversion) */
+  if (typeof fbq === 'function') {
+    fbq('track', 'Schedule');
+  }
+
+  /* GA4 via gtag (belt & suspenders) */
+  if (typeof gtag === 'function') {
+    gtag('event', 'appointment_booked', {
+      client_id: 'buildwise-media',
+      booking_source: 'website',
+      page_path: '/booked'
+    });
+  }
+
+  /* GTM dataLayer — event name matches GTM trigger */
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'appointment_booked',
+    client_id: 'buildwise-media',
+    booking_source: 'website',
+    page_path: '/booked'
+  });
+
+  /* Clean the URL so bookmarks/shares don't re-fire */
+  if (window.history && window.history.replaceState) {
+    window.history.replaceState({}, '', '/booked');
+  }
+}
+</script>
 
 </body>
 </html>
